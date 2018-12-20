@@ -1,0 +1,104 @@
+$hiddenBorder: 10px solid transparent;
+$boardFontSize: 18px;
+$boardFontColor: #9e6e34;
+$fieldSideLength: 80px;
+$fieldSideLength-short: 20px;
+$fieldBorderSize: 1px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("../images/floor.jpg") black fixed no-repeat top / cover;
+    height: 1vh;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background: rgba(white, 0.4);
+    margin-bottom: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: darken($boardFontColor, 20%);
+    padding: 20px 0;
+    font-size: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.field {
+    height: $fieldSideLength;
+    width: $fieldSideLength;
+    border: 1px solid saddlebrown;
+    background: url("../images/wood_light.jpg") white no-repeat center / cover;
+}
+
+@for $i from 1 through 8 {
+    @if ($i % 2 == 0) {
+        .row-#{$i} .field:nth-child(2n + 1) {
+            background: url("../images/wood_dark.jpg") white no-repeat center / cover;
+        }
+    } @else {
+        .row-#{$i} .field:nth-child(2n) {
+            background: url("../images/wood_dark.jpg") white no-repeat center / cover;
+        }
+    }
+}
+
+.field-letter,
+.field-number {
+    border: $fieldBorderSize solid black;
+    background: url("../images/wood_venge.jpg") dimgrey no-repeat center / cover;
+    color: $boardFontColor;
+    font-size: $boardFontSize;
+    text-align: center;
+}
+
+.field-letter {
+    height: $fieldSideLength-short;
+    width: $fieldSideLength;
+}
+
+.field-number {
+    height: $fieldSideLength;
+    width: $fieldSideLength-short;
+    padding-top: $fieldSideLength / 2 - $boardFontSize / 2 - $fieldBorderSize;
+}
+
+.field-empty {
+    height: 0;
+    width: 0;
+    border: $fieldSideLength-short / 2 solid #28231E;
+}
+
+.field-empty--top-left {
+    border-left: $hiddenBorder;
+    border-top: $hiddenBorder;
+}
+
+.field-empty--top-right {
+    border-top: $hiddenBorder;
+    border-right: $hiddenBorder;
+}
+
+.field-empty--bottom-left {
+    border-left: $hiddenBorder;
+    border-bottom: $hiddenBorder;
+}
+
+.field-empty--bottom-right {
+    border-bottom: $hiddenBorder;
+    border-right: $hiddenBorder;
+}
